@@ -19,7 +19,7 @@
     "react-native-component"
   ],
   "author": "Naoufal Kadhom <naoufalkadhom@gmail.com> (https://github.com/naoufal)",
-  "contributors": "Ernesto R. C. Pereda <ercp42@gmail.com> (https://github.com/ercpereda)"
+  "contributors": "Ernesto R. C. Pereda <ercp42@gmail.com> (https://github.com/ercpereda)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ercpereda/react-native-accordion/issues"

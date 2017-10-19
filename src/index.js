@@ -55,7 +55,7 @@ class Accordion extends Component {
   };
 
   toggle = () => {
-    this.state.is_visible = !this.state.is_visible;
+    this.setState({ is_visible: !this.state.is_visible }); 
 
     Animated.timing(
       this.state.height,

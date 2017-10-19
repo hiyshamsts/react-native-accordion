@@ -17,7 +17,7 @@ const propTypes = {
   content: PropTypes.element.isRequired,
   easing: PropTypes.string,
   expanded: PropTypes.bool,
-  header: PropTypes.element.isRequired,
+  header: PropTypes.func.isRequired,
   onPress: PropTypes.func,
   underlayColor: PropTypes.string,
   style: PropTypes.object

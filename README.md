@@ -6,6 +6,9 @@ __`react-native-accordion`__ is an easy to use Accordion component for [React Na
 
 ![accordion](https://cloud.githubusercontent.com/assets/1627824/7762243/801c1e46-ffff-11e4-9a36-2183704b6ec6.gif)
 
+## Preview
+Using the [expo project](https://expo.io/@ercpereda/react-native-accordion-example)
+
 ## Install
 ```shell
 npm i --save react-native-accordion

@@ -11,7 +11,7 @@ Using the [expo project](https://expo.io/@ercpereda/react-native-accordion-examp
 
 ## Install
 ```shell
-npm i --save react-native-accordion
+npm i --save @ercpereda/react-native-accordion
 ```
 
 ## Usage

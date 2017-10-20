@@ -1,6 +1,6 @@
 {
   "name": "@ercpereda/react-native-accordion",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "An Accordion Component for React Native",
   "main": "index.js",
   "scripts": {

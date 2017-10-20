@@ -16,47 +16,61 @@ npm i --save @ercpereda/react-native-accordion
 
 ## Usage
 Using an Accordion in your app will usually look like this:
-```js
-var Accordion = require('react-native-accordion');
+```jsx
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Accordion from '@ercpereda/react-native-accordion';
 
-var YourComponent = React.createClass({
-  getInitialState() {
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    return {
-      dataSource: ds.cloneWithRows(_.range(25)),
-    };
-  },
+const Header = ({ isOpen }) =>
+  <View style={{
+      paddingTop: 15,
+      paddingRight: 15,
+      paddingLeft: 15,
+      paddingBottom: 15,
+      borderBottomWidth: 1,
+      borderBottomColor: '#a9a9a9',
+      backgroundColor: '#f9f9f9',
+    }}>
+      <Text>{`${isOpen ? '-' : '+'} Click to Expand`}</Text>
+    </View>;
 
+const Content = (
+  <View style={{
+      display: 'flex',
+      backgroundColor: '#31363D'
+    }}>
+      <Text style={{
+        paddingTop: 15,
+        paddingRight: 15,
+        paddingBottom: 15,
+        paddingLeft: 15,
+        color: '#fff',
+      }}>
+        This content is hidden in the accordion
+      </Text>
+    </View>);
+
+export default class App extends React.Component {
   render() {
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-      />
-    );
-  },
-
-  _renderRow() {
-    var header = (
-      <View style={...}>
-        <Text>Click to Expand</Text>
+      <View style={styles.container}>
+        <Accordion
+          header={Header}
+          content={Content}
+          duration={300}
+        />
       </View>
-    );
-
-    var content = (
-      <View style={...}>
-        <Text>This content is hidden in the accordion</Text>
-      </View>
-    );
-
-    return (
-      <Accordion
-        header={header}
-        content={content}
-        easing="easeOutCubic"
-      />
     );
   }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 ```
 

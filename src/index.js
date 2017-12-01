@@ -34,7 +34,7 @@ const defaultProps = {
 
 class Accordion extends Component {
   state = {
-    is_visible: false || this.props.expanded,
+    is_visible: this.props.expanded,
     height: new Animated.Value(0),
     content_height: 0
   };

@@ -1,15 +1,8 @@
-'use strict';
+"use strict"
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  TouchableHighlight,
-  View,
-  Text,
-  Platform,
-  Animated
-} from 'react-native';
+import React, {Component} from "react"
+import PropTypes from "prop-types"
+import {StyleSheet, TouchableHighlight, View, Text, Platform, Animated} from "react-native"
 
 const propTypes = {
   activeOpacity: PropTypes.number,
@@ -20,59 +13,57 @@ const propTypes = {
   header: PropTypes.func.isRequired,
   onPress: PropTypes.func,
   underlayColor: PropTypes.string,
-  style: PropTypes.object
-};
+  style: PropTypes.object,
+  item: PropTypes.object
+}
 
 const defaultProps = {
   activeOpacity: 1,
   animationDuration: 300,
-  easing: 'linear',
+  easing: "linear",
   expanded: false,
-  underlayColor: '#000',
+  underlayColor: "#000",
   style: {}
-};
+}
 
 class Accordion extends Component {
   state = {
-    is_visible: this.props.expanded,
+    is_visible: false || this.props.expanded,
     height: new Animated.Value(0),
     content_height: 0
-  };
+  }
 
   componentDidMount() {
     // Gets content height when component mounts
     // without setTimeout, measure returns 0 for every value.
     // See https://github.com/facebook/react-native/issues/953
-    setTimeout(this._getContentHeight);
+    setTimeout(this._getContentHeight)
   }
 
   close = () => {
-    this.state.is_visible && this.toggle();
-  };
+    this.state.is_visible && this.toggle()
+  }
 
   open = () => {
-    !this.state.is_visible && this.toggle();
-  };
+    !this.state.is_visible && this.toggle()
+  }
 
   toggle = () => {
-    this.setState({ is_visible: !this.state.is_visible }); 
+    this.setState({is_visible: !this.state.is_visible})
 
-    Animated.timing(
-      this.state.height,
-      {
-        toValue: this.state.height._value === 0 ? this.state.content_height : 0,
-        duration: this.props.animationDuration,
-      }
-    ).start();
-  };
+    Animated.timing(this.state.height, {
+      toValue: this.state.height._value === 0 ? this.state.content_height : 0,
+      duration: this.props.animationDuration
+    }).start()
+  }
 
   _onPress = () => {
-    this.toggle();
+    this.toggle()
 
     if (this.props.onPress) {
-      this.props.onPress.call(this);
+      this.props.onPress.call(this)
     }
-  };
+  }
 
   _getContentHeight = () => {
     if (this.refs.AccordionContent) {
@@ -81,43 +72,36 @@ class Accordion extends Component {
         this.setState({
           height: new Animated.Value(this.props.expanded ? height : 0),
           content_height: height
-        });
-      });
+        })
+      })
     }
-  };
+  }
 
   render() {
     return (
       <View
         style={{
-          overflow: 'hidden'
+          overflow: "hidden"
         }}
       >
-        <TouchableHighlight
-          ref="AccordionHeader"
-          onPress={this._onPress}
-          underlayColor={this.props.underlayColor}
-          style={this.props.style}
-        >
-          {this.props.header({ isOpen: this.state.is_visible })}
+        <TouchableHighlight ref="AccordionHeader" onPress={this._onPress} underlayColor={this.props.underlayColor} style={this.props.style}>
+          {this.props.header({isOpen: this.state.is_visible, item: this.props.item})}
         </TouchableHighlight>
         <Animated.View
           ref="AccordionContentWrapper"
           style={{
             height: this.state.height,
-            overflow: 'scroll'
+            overflow: "scroll"
           }}
         >
-          <View ref="AccordionContent">
-            {(Platform.OS === 'ios' || this.state.is_visible) ? this.props.content : null}
-          </View>
+          <View ref="AccordionContent">{Platform.OS === "ios" || this.state.is_visible ? this.props.content : null}</View>
         </Animated.View>
       </View>
-    );
+    )
   }
 }
 
-Accordion.propTypes = propTypes;
-Accordion.defaultProps = defaultProps;
+Accordion.propTypes = propTypes
+Accordion.defaultProps = defaultProps
 
-export default Accordion;
+export default Accordion

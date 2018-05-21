@@ -94,7 +94,7 @@ class Accordion extends Component {
             overflow: "scroll"
           }}
         >
-          <View ref="AccordionContent">{Platform.OS === "ios" || this.state.is_visible ? this.props.content : null}</View>
+          <View ref="AccordionContent">{Platform.OS === "ios" || this.props.active ? this.props.content : null}</View>
         </Animated.View>
       </View>
     )

@@ -90,7 +90,7 @@ class Accordion extends Component {
         <Animated.View
           ref="AccordionContentWrapper"
           style={{
-            height: this.state.height,
+            height: this.props.active ? this.state.content_height : 0,
             overflow: "scroll"
           }}
         >
